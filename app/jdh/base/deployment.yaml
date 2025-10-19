@@ -31,7 +31,7 @@ spec:
                   name: mariadb-jdh-password
                   key: password
             - name: DATABASE_HOST
-              value: mariadb-jdh-primary.jdh.svc.cluster.local
+              value: mariadb-jdh.jdh.svc.cluster.local
             - name: RAILS_ENV
               value: production
             - name: SECRET_KEY_BASE
