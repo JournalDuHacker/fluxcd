@@ -43,5 +43,6 @@ patches:
                     value: test
 
 images:
-  - name: ghcr.io/flemzord/journalduhacker.net
-    newTag: latest # {"$imagepolicy": "jdh:journalduhacker-staging"}
+  - name: ghcr.io/flemzord/journalduhacker.net:unset
+    newName: ghcr.io/flemzord/journalduhacker.net
+    newTag: latest # {"$imagepolicy": "jdh:journalduhacker"}
