@@ -1,5 +1,5 @@
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta2
+apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImageUpdateAutomation
 metadata:
   name: image-updater
@@ -21,6 +21,6 @@ spec:
         email: fluxcdbot@journalduhacker.net
         name: FluxCD ImageUpdater
       messageTemplate: |
-        [staging] Update image {{range .Changed.Changes}}{{print .OldValue}} -> {{println .NewValue}}{{end}}
+        [staging] Update image {{range .Changed.Changes}}{{println .NewValue}}{{end}}
     push:
       branch: develop
