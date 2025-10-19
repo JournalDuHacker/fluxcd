@@ -29,4 +29,5 @@ patches:
 images:
   - name: ghcr.io/flemzord/journalduhacker.net:unset
     newName: ghcr.io/flemzord/journalduhacker.net
-    newTag: latest # {"$imagepolicy": "jdh:journalduhacker-staging:tag"}
+    newTag: main-d63cf80 # {"$imagepolicy": "jdh:journalduhacker-staging:tag"}
+    digest: sha256:e94d6bf2e5d0efdc415818c935bc4525bf7428ddf2bf2cc9161f37f4bcf52b05 # {"$imagepolicy": "jdh:journalduhacker-staging:digest"}
