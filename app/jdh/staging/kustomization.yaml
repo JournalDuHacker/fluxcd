@@ -6,7 +6,7 @@ resources:
   - ../base/
   - ingress.yaml
   - image-update-automation.yaml
-  - secrets/
+  - secrets/rails-secretkeybase.yaml
 patches:
   # Réduire les ressources pour staging
   - patch: |-
