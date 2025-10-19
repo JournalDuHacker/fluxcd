@@ -10,7 +10,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: journalduhacker
+  name: journalduhacker-staging
 spec:
   imageRepositoryRef:
     name: journalduhacker
