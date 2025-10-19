@@ -1,0 +1,48 @@
+---
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: MariaDB
+metadata:
+  name: mariadb-jdh
+spec:
+  database: jdh
+  username: jdh
+
+  storage:
+    size: 10Gi
+    storageClassName: rbd-databases
+
+  env:
+    # Since data were imported from replication, we need to keep the same
+    # host-timezone than the source.
+    - name: TZ
+      value: "Europe/Paris"
+
+  replicas: 3
+
+  metrics:
+    enabled: true
+
+  # common config
+  volumes:
+    - name: mariadb-config-project
+      configMap:
+        name: mariadb-config-project
+  volumeMounts:
+    - name: mariadb-config-project
+      mountPath: /etc/mysql/mariadb.conf.d/project.cnf
+      subPath: project.cnf
+
+  # Ensure that the Pods are not preempted by Kubernetes to make room for new scheduled Pods.
+  priorityClassName: system-node-critical
+
+  resources:
+    requests:
+      cpu: 1
+      memory: 1Gi
+    limits:
+      memory: 2Gi
+
+  # innodb_buffer_pool_size: 80% of memory limits.
+  myCnf: |
+    [mariadb]
+    innodb_buffer_pool_size=3200MB
