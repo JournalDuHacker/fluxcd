@@ -13,14 +13,11 @@ spec:
       labels:
         app: journalduhacker
     spec:
-      containers:
-        - name: journalduhacker
+      initContainers:
+        - name: db-migrate
           image: ghcr.io/flemzord/journalduhacker.net:unset
-          ports:
-            - name: http
-              containerPort: 3000
-              protocol: TCP
-          env:
+          command: ["bundle", "exec", "rake", "db:migrate"]
+          env: &app-env
             - name: DATABASE_NAME
               value: jdh
             - name: DATABASE_USER
@@ -39,6 +36,14 @@ spec:
                 secretKeyRef:
                   name: journalduhacker-rails
                   key: secret-key-base
+      containers:
+        - name: journalduhacker
+          image: ghcr.io/flemzord/journalduhacker.net:unset
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          env: *app-env
           resources:
             requests:
               cpu: 100m
