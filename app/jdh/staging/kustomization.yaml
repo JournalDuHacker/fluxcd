@@ -5,3 +5,23 @@ namespace: jdh
 resources:
   - namespace.yaml
   - ../base/
+
+patches:
+  # Réduire les ressources pour staging
+  - patch: |-
+      apiVersion: k8s.mariadb.com/v1alpha1
+      kind: MariaDB
+      metadata:
+        name: mariadb-jdh
+      spec:
+        replicas: 1
+        resources:
+          requests:
+            cpu: 500m
+            memory: 512Mi
+          limits:
+            cpu: 2
+            memory: 1Gi
+        myCnf: |
+          [mariadb]
+          innodb_buffer_pool_size=800MB
