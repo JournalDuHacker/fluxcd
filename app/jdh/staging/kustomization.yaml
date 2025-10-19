@@ -5,6 +5,8 @@ namespace: jdh
 resources:
   - namespace.yaml
   - ../base/
+  - ingress.yaml
+  - image-update-automation.yaml
 
 patches:
   # Réduire les ressources pour staging
@@ -25,3 +27,21 @@ patches:
         myCnf: |
           [mariadb]
           innodb_buffer_pool_size=800MB
+  # Ajouter RAILS_ENV pour staging
+  - patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: journalduhacker
+      spec:
+        template:
+          spec:
+            containers:
+              - name: journalduhacker
+                env:
+                  - name: RAILS_ENV
+                    value: test
+
+images:
+  - name: ghcr.io/flemzord/journalduhacker.net
+    newTag: latest # {"$imagepolicy": "jdh:journalduhacker-staging"}
