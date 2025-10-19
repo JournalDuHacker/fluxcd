@@ -1,3 +1,4 @@
+---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: jdh
@@ -6,6 +7,7 @@ resources:
   - ../base/
   - ingress.yaml
   - image-update-automation.yaml
+
 patches:
   # Réduire les ressources pour staging
   - patch: |-
@@ -38,8 +40,9 @@ patches:
               - name: journalduhacker
                 env:
                   - name: RAILS_ENV
-                    value: test
+                    value: production
+
 images:
   - name: ghcr.io/flemzord/journalduhacker.net:unset
     newName: ghcr.io/flemzord/journalduhacker.net
-    newTag: ghcr.io/flemzord/journalduhacker.net:latest@sha256:8a129238e7c16402fc5fa594e77f2f5609c46c9022ad3920a8c7d76d11aa964d # {"$imagepolicy": "jdh:journalduhacker-staging"}
+    newTag: main-d63cf80 # {"$imagepolicy": "jdh:journalduhacker-staging:tag"}
