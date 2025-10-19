@@ -15,6 +15,25 @@ principalement sur deux branches :
 L'idée étant de tester sur staging, puis de fusionner (via `pull request` ou
 `merge request`) vers la branche `main`.
 
+## Arborescence
+
+Le point d'entrée pour FluxCD est le fichier `clusters/$env/main.yaml`.
+Il contient les premiers «includes» vers les autres fichiers Kustomize.
+
+La convention choisie :
+
+* `/app`: contient la description des différentes applications utilisées pour
+          le bon fonctionnement des services.
+* `/infra`: contient les composants plus internes au cluster (CRDs et operators),
+          qui doivent être déployés avant les applications.
+
+Puis pour les applications :
+
+* `/app/$appname/base/$kind-$name.yaml` : décrit les composants de l'application
+          `$appname`, communs à tous les environnements.
+* `/app/$appname/$environnement/$kind-$name.yaml` : décrit les composants de
+          l'application, spécifiques à chaque environnements.
+
 
 ## Bootstrap & mise à jour
 
