@@ -45,4 +45,4 @@ patches:
 images:
   - name: ghcr.io/flemzord/journalduhacker.net:unset
     newName: ghcr.io/flemzord/journalduhacker.net
-    newTag: latest # {"$imagepolicy": "jdh:journalduhacker"}
+    newTag: main-d63cf80 # {"$imagepolicy": "jdh:journalduhacker-staging"}
