@@ -1,3 +1,4 @@
 /.cache
 /.config
 /.kube
+/fluxcd-ssh-*
