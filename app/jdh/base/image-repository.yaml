@@ -1,0 +1,22 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: journalduhacker
+spec:
+  image: ghcr.io/flemzord/journalduhacker.net
+  interval: 5m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: journalduhacker
+spec:
+  imageRepositoryRef:
+    name: journalduhacker
+  filterTags:
+    pattern: "^latest$"
+  policy:
+    alphabetical: {}
+  digestReflectionPolicy: Always
+  interval: 5m0s
