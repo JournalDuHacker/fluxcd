@@ -15,6 +15,13 @@ spec:
       labels:
         app: mailpit
     spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app: mailpit
+              topologyKey: kubernetes.io/hostname
       containers:
         - name: mailpit
           image: axllent/mailpit:latest
@@ -23,8 +30,8 @@ spec:
               value: "Europe/Paris"
             - name: MP_DATABASE
               value: "/data/mailpit.db"
-            - name: MP_UI_AUTH_FILE
-              value: "/data/authfile"
+            # - name: MP_UI_AUTH_FILE
+            #   value: "/data/authfile"
           ports:
             - name: smtp
               containerPort: 1025
