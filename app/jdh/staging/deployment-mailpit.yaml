@@ -1,0 +1,81 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mailpit
+  labels:
+    app: mailpit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mailpit
+  template:
+    metadata:
+      labels:
+        app: mailpit
+    spec:
+      containers:
+        - name: mailpit
+          image: axllent/mailpit:latest
+          env:
+            - name: TZ
+              value: "Europe/Paris"
+            - name: MP_DATABASE
+              value: "/data/mailpit.db"
+            - name: MP_UI_AUTH_FILE
+              value: "/data/authfile"
+          ports:
+            - name: smtp
+              containerPort: 1025
+              protocol: TCP
+            - name: http
+              containerPort: 8025
+              protocol: TCP
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: mailpit-data
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mailpit-data
+  labels:
+    app: mailpit
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 4Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mailpit
+  labels:
+    app: mailpit
+spec:
+  type: ClusterIP
+  ports:
+    - name: smtp
+      port: 1025
+      targetPort: smtp
+      protocol: TCP
+    - name: http
+      port: 8025
+      targetPort: http
+      protocol: TCP
+  selector:
+    app: mailpit
