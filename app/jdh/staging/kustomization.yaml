@@ -4,7 +4,7 @@ namespace: jdh
 resources:
   - namespace.yaml
   - ../base/
-  - configmap-headers-seo.yaml
+  #  - configmap-headers-seo.yaml
   - ingress-jdh.yaml
   - image-update-automation.yaml
   - secrets/rails-secretkeybase.yaml
