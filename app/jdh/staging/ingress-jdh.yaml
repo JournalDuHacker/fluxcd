@@ -6,7 +6,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     cert-manager.io/cluster-issuer: "letsencrypt"
-    nginx.ingress.kubernetes.io/custom-http-headers: "X-Robots-Tag: noindex, nofollow"
+    nginx.ingress.kubernetes.io/custom-headers: "jdh/headers-seo"
 spec:
   tls:
     - hosts:
