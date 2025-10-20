@@ -43,7 +43,7 @@ patches:
           [mariadb]
           innodb_buffer_pool_size=800MB
 images:
-  - name: ghcr.io/flemzord/journalduhacker.net:unset
-    newName: ghcr.io/flemzord/journalduhacker.net
+  - name: ghcr.io/journalduhacker/journalduhacker.net:unset
+    newName: ghcr.io/journalduhacker/journalduhacker.net
     newTag: latest # {"$imagepolicy": "jdh:journalduhacker-staging:tag"}
     digest: sha256:3d30198bbaada679534a212c58e50ae4bcdeb1031df6f778d7195931374798a0 # {"$imagepolicy": "jdh:journalduhacker-staging:digest"}
