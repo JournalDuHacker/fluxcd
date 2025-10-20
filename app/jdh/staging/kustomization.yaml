@@ -46,4 +46,4 @@ images:
   - name: ghcr.io/journalduhacker/journalduhacker.net:unset
     newName: ghcr.io/journalduhacker/journalduhacker.net
     newTag: latest # {"$imagepolicy": "jdh:journalduhacker-staging:tag"}
-    digest: sha256:3d30198bbaada679534a212c58e50ae4bcdeb1031df6f778d7195931374798a0 # {"$imagepolicy": "jdh:journalduhacker-staging:digest"}
+    digest: sha256:37baf9a29036007f391ef13cbc3ed5984c77f25a6021d879e71a1620a39d7f6f # {"$imagepolicy": "jdh:journalduhacker-staging:digest"}
