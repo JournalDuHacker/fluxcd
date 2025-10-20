@@ -15,7 +15,7 @@ spec:
     spec:
       initContainers:
         - name: db-migrate
-          image: ghcr.io/flemzord/journalduhacker.net:unset
+          image: ghcr.io/journalduhacker/journalduhacker.net:unset
           command: ["bundle", "exec", "rake", "db:migrate"]
           env: &app-env
             - name: DATABASE_NAME
@@ -42,7 +42,7 @@ spec:
               value: "25"
       containers:
         - name: journalduhacker
-          image: ghcr.io/flemzord/journalduhacker.net:unset
+          image: ghcr.io/journalduhacker/journalduhacker.net:unset
           ports:
             - name: http
               containerPort: 3000
