@@ -3,3 +3,4 @@
 /.kube
 /.local
 /fluxcd-ssh-*
+/.viminfo
