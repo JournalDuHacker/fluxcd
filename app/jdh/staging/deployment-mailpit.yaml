@@ -30,6 +30,10 @@ spec:
               value: "Europe/Paris"
             - name: MP_DATABASE
               value: "/data/mailpit.db"
+            - name: MP_ENABLE_PROMETHEUS
+              value: "true"
+            - name: MP_MAX_AGE
+              value: "15d"
             # - name: MP_UI_AUTH_FILE
             #   value: "/data/authfile"
           ports:
