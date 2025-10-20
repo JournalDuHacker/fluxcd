@@ -25,8 +25,6 @@ patches:
                     value: mailpit.jdh.svc.cluster.local
                   - name: SMTP_PORT
                     value: "1025"
-                  - name: SMTP_AUTHENTICATION
-                    value: none
   - patch: |-
       apiVersion: k8s.mariadb.com/v1alpha1
       kind: MariaDB
