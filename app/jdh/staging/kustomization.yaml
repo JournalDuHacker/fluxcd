@@ -7,6 +7,7 @@ resources:
   - ingress-jdh.yaml
   - image-update-automation.yaml
   - secrets/rails-secretkeybase.yaml
+  - secrets/mailpit-auth.yaml
   - deployment-mailpit.yaml
   - ingress-mailpit.yaml
 patches:
