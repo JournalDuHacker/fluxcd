@@ -20,3 +20,16 @@ spec:
     alphabetical: {}
   digestReflectionPolicy: Always
   interval: 5m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: journalduhacker-production
+  namespace: jdh
+spec:
+  imageRepositoryRef:
+    name: journalduhacker
+  policy:
+    semver:
+      range: ">=1.0.0"
+  interval: 5m0s
