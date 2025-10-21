@@ -45,4 +45,4 @@ spec:
   # innodb_buffer_pool_size: 80% of memory limits.
   myCnf: |
     [mariadb]
-    innodb_buffer_pool_size=3200MB
+    innodb_buffer_pool_size=1400MB
