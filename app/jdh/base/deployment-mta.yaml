@@ -1,0 +1,92 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mta
+  labels:
+    app: mta
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mta
+  template:
+    metadata:
+      labels:
+        app: mta
+    spec:
+      securityContext:
+        fsGroup: 101
+        runAsUser: 100
+        runAsGroup: 101
+        runAsNonRoot: true
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app: mta
+              topologyKey: kubernetes.io/hostname
+      containers:
+        - name: mta
+          image: devture/exim-relay
+          env:
+            - name: TZ
+              value: "Europe/Paris"
+          ports:
+            - name: smtp
+              containerPort: 8025
+              protocol: TCP
+          volumeMounts:
+            - name: spool
+              mountPath: /var/spool/exim
+          livenessProbe:
+            tcpSocket:
+              port: 8025
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: 8025
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+      volumes:
+        - name: spool
+          persistentVolumeClaim:
+            claimName: mta-spool
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mta-spool
+  labels:
+    app: mta
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mta
+  labels:
+    app: mta
+spec:
+  type: ClusterIP
+  ports:
+    - name: smtp
+      port: 8025
+      targetPort: smtp
+      protocol: TCP
+  selector:
+    app: mta

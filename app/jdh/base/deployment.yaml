@@ -37,9 +37,9 @@ spec:
                   name: journalduhacker-rails
                   key: secret-key-base
             - name: SMTP_ADDRESS
-              value: 127.0.0.1
+              value: mta.jdh.svc.cluster.local
             - name: SMTP_PORT
-              value: "25"
+              value: "8025"
       containers:
         - name: journalduhacker
           image: ghcr.io/journalduhacker/journalduhacker.net:unset

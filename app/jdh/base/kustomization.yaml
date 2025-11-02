@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - database.yaml
   - deployment.yaml
+  - deployment-mta.yaml
   - image-repository.yaml
 
 configMapGenerator:
