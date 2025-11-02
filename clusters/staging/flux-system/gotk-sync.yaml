@@ -11,7 +11,7 @@ spec:
     branch: develop
   secretRef:
     name: flux-system
-  url: ssh://git@github.com/Kioob/jdh-fluxcd.git
+  url: ssh://git@github.com/JournalDuHacker/fluxcd
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
