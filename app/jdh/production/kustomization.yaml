@@ -7,6 +7,34 @@ resources:
   - ingress-jdh.yaml
   - image-update-automation.yaml
   - secrets/rails-secretkeybase.yaml
+  - secrets/mta-smtp.yaml
+patches:
+  - patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: mta
+      spec:
+        template:
+          spec:
+            containers:
+              - name: mta
+                env:
+                  - name: SMARTHOST
+                    valueFrom:
+                      secretKeyRef:
+                        name: mta-smtp
+                        key: SMARTHOST
+                  - name: SMTP_USERNAME
+                    valueFrom:
+                      secretKeyRef:
+                        name: mta-smtp
+                        key: SMTP_USERNAME
+                  - name: SMTP_PASSWORD
+                    valueFrom:
+                      secretKeyRef:
+                        name: mta-smtp
+                        key: SMTP_PASSWORD
 images:
   - name: ghcr.io/journalduhacker/journalduhacker.net:unset
     newName: ghcr.io/journalduhacker/journalduhacker.net

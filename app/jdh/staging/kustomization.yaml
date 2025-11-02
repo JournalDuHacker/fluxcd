@@ -16,17 +16,15 @@ patches:
       apiVersion: apps/v1
       kind: Deployment
       metadata:
-        name: journalduhacker
+        name: mta
       spec:
         template:
           spec:
             containers:
-              - name: journalduhacker
+              - name: mta
                 env:
-                  - name: SMTP_ADDRESS
-                    value: mailpit.jdh.svc.cluster.local
-                  - name: SMTP_PORT
-                    value: "1025"
+                  - name: SMARTHOST
+                    value: mailpit.jdh.svc.cluster.local:1025
   - patch: |-
       apiVersion: k8s.mariadb.com/v1alpha1
       kind: MariaDB
