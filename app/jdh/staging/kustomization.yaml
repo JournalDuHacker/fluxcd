@@ -24,7 +24,7 @@ patches:
               - name: mta
                 env:
                   - name: SMARTHOST
-                    value: mailpit.jdh.svc.cluster.local:1025
+                    value: mailpit.jdh.svc.cluster.local::1025
   - patch: |-
       apiVersion: k8s.mariadb.com/v1alpha1
       kind: MariaDB
