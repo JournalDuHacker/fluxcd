@@ -68,7 +68,7 @@ permet d'utiliser la même clé pour `ImageUpdater`.
 ### Installation de FluxCD
 
 ```
-$ flux bootstrap git --url=ssh://git@github.com/Kioob/jdh-fluxcd.git \
+$ flux bootstrap git --url=ssh://git@github.com/JournalDuHacker/fluxcd.git \
     --components-extra=image-reflector-controller,image-automation-controller \
     --path=clusters/staging \
     --branch=develop \
