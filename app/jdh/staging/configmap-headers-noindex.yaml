@@ -4,4 +4,4 @@ kind: ConfigMap
 metadata:
   name: headers-noindex
 data:
-  X-Robots-Tag: "noindex, nofollow"
+  x-robots-tag: "noindex, nofollow"
