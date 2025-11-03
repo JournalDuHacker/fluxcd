@@ -25,7 +25,7 @@ spec:
   dependsOn:
     - name: infra
   interval: 2m0s
-  path: ./clusters/staging/apps # targets file kustomization.yaml in apps directory
+  path: ./clusters/apps-staging # targets file kustomization.yaml in this directory
   prune: true
   sourceRef:
     kind: GitRepository
