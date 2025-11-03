@@ -41,7 +41,7 @@ patches:
       metadata:
         name: mariadb-jdh
       spec:
-        replicas: 2
+        replicas: 3
         replication:
           enabled: true
 images:
