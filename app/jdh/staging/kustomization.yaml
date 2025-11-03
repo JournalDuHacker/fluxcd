@@ -32,6 +32,8 @@ patches:
         name: mariadb-jdh
       spec:
         replicas: 1
+        replication:
+          enabled: false
         resources:
           requests:
             cpu: 500m

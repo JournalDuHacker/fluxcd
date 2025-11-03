@@ -17,8 +17,6 @@ spec:
     - name: TZ
       value: "Europe/Paris"
 
-  replicas: 3
-
   metrics:
     enabled: true
 
