@@ -17,6 +17,13 @@ spec:
         - name: db-migrate
           image: ghcr.io/journalduhacker/journalduhacker.net:unset
           command: ["bundle", "exec", "rake", "db:migrate"]
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
           env: &app-env
             - name: DATABASE_NAME
               value: jdh
