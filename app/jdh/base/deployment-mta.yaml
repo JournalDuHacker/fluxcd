@@ -34,6 +34,8 @@ spec:
           env:
             - name: TZ
               value: "Europe/Paris"
+            - name: HOSTNAME
+              value: smtp.journalduhacker.net
           ports:
             - name: smtp
               containerPort: 8025
