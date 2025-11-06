@@ -47,5 +47,5 @@ patches:
 images:
   - name: ghcr.io/journalduhacker/journalduhacker.net:unset
     newName: ghcr.io/journalduhacker/journalduhacker.net
-    newTag: latest # {"$imagepolicy": "jdh:journalduhacker-production:tag"}
+    newTag: v8.0.0 # {"$imagepolicy": "jdh:journalduhacker-production:tag"}
     digest: "" # {"$imagepolicy": "jdh:journalduhacker-production:digest"}
