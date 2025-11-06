@@ -40,7 +40,7 @@ spec:
     limits:
       memory: 2Gi
 
-  # innodb_buffer_pool_size: 80% of memory limits.
+  # innodb_buffer_pool_size: 78% of memory limits (1600MB/2048MB).
   myCnf: |
     [mariadb]
-    innodb_buffer_pool_size=1400MB
+    innodb_buffer_pool_size=1600MB
