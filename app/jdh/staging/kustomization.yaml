@@ -27,6 +27,24 @@ patches:
                   - name: SMARTHOST
                     value: mailpit.jdh.svc.cluster.local::1025
   - patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: journalduhacker
+      spec:
+        template:
+          spec:
+            initContainers:
+              - name: db-migrate
+                env:
+                  - name: DATABASE_HOST
+                    value: mariadb-jdh.jdh.svc.cluster.local
+            containers:
+              - name: journalduhacker
+                env:
+                  - name: DATABASE_HOST
+                    value: mariadb-jdh.jdh.svc.cluster.local
+  - patch: |-
       apiVersion: k8s.mariadb.com/v1alpha1
       kind: MariaDB
       metadata:
