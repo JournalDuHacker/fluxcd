@@ -6,6 +6,7 @@ resources:
   - ../base/
   - ingress-jdh.yaml
   - image-update-automation.yaml
+  - pdb-journalduhacker.yaml
   - secrets/rails-secretkeybase.yaml
   - secrets/mta-smtp.yaml
 patches:
