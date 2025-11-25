@@ -2,18 +2,19 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: journalduhacker
+  name: journalduhacker-redirect
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/permanent-redirect: "https://www.journalduhacker.net/"
     cert-manager.io/cluster-issuer: "letsencrypt"
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - www.journalduhacker.net
-      secretName: jdh-tls-new
+        - journalduhacker.net
+      secretName: jdh-tls-redirect
   rules:
-    - host: www.journalduhacker.net
+    - host: journalduhacker.net
       http:
         paths:
           - path: /

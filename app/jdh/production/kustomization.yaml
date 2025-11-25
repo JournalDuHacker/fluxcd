@@ -5,6 +5,8 @@ resources:
   - namespace.yaml
   - ../base/
   - ingress-jdh.yaml
+  - ingress-jdh-tmp.yaml
+  - ingress-jdh-redirect.yaml
   - image-update-automation.yaml
   - pdb-journalduhacker.yaml
   - secrets/rails-secretkeybase.yaml

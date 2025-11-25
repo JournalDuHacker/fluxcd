@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: journalduhacker
+  name: journalduhacker-tmp
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     cert-manager.io/cluster-issuer: "letsencrypt"
@@ -10,10 +10,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - www.journalduhacker.net
-      secretName: jdh-tls-new
+        - prod.jdh.pada.one
+      secretName: jdh-tls
   rules:
-    - host: www.journalduhacker.net
+    - host: prod.jdh.pada.one
       http:
         paths:
           - path: /
