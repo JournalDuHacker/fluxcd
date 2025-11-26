@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: blog
+resources:
+  - namespace.yaml
+  - ../base/
+  - ingress-blog.yaml
+  - image-update-automation.yaml
+images:
+  - name: ghcr.io/journalduhacker/blog.journalduhacker.net:unset
+    newName: ghcr.io/journalduhacker/blog.journalduhacker.net
+    newTag: main-264c51c # {"$imagepolicy": "blog:blog-production:tag"}
+    digest: "" # {"$imagepolicy": "blog:blog-production:digest"}
