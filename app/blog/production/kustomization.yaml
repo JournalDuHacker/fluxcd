@@ -9,5 +9,5 @@ resources:
 images:
   - name: ghcr.io/journalduhacker/blog.journalduhacker.net:unset
     newName: ghcr.io/journalduhacker/blog.journalduhacker.net
-    newTag: main-264c51c # {"$imagepolicy": "blog:blog-production:tag"}
+    newTag: main-1aa41be # {"$imagepolicy": "blog:blog-production:tag"}
     digest: "" # {"$imagepolicy": "blog:blog-production:digest"}
