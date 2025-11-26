@@ -1,0 +1,26 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageUpdateAutomation
+metadata:
+  name: image-updater
+spec:
+  interval: 1m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  update:
+    path: ./app/blog/production
+    strategy: Setters
+  git:
+    checkout:
+      ref:
+        branch: main
+    commit:
+      author:
+        email: fluxcdbot@journalduhacker.net
+        name: FluxCD ImageUpdater
+      messageTemplate: |
+        [blog] Update image {{range .Changed.Changes}}{{println .NewValue}}{{end}}
+    push:
+      branch: main

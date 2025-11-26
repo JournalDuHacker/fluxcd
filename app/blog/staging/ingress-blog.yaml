@@ -1,0 +1,26 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: blog
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt"
+    nginx.ingress.kubernetes.io/custom-headers: "kube-system/kers-headers-noindex"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - blog.jdh.pada.one
+      secretName: blog-tls
+  rules:
+    - host: blog.jdh.pada.one
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: blog
+                port:
+                  name: http
