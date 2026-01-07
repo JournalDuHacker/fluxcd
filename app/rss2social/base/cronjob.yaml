@@ -1,0 +1,29 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: rss2social
+spec:
+  schedule: "12 8-22 * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: rss2social
+              image: ghcr.io/journalduhacker/rss2social:unset
+              imagePullPolicy: IfNotPresent
+              command: ["rss2social"]
+              args: ["run", "--config", "/secrets/config.yaml"]
+              volumeMounts:
+                - name: config
+                  mountPath: /secrets
+                  readOnly: true
+          volumes:
+            - name: config
+              secret:
+                secretName: rss2social-config
+          restartPolicy: OnFailure

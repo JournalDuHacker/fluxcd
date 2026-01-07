@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - ../../app/jdh/production/
   - ../../app/blog/production/
+  - ../../app/rss2social/production/

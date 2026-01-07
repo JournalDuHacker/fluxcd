@@ -1,0 +1,23 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+metadata:
+  name: rss2social
+spec:
+  image: ghcr.io/journalduhacker/rss2social
+  interval: 5m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: rss2social-production
+spec:
+  imageRepositoryRef:
+    name: rss2social
+  filterTags:
+    pattern: "^main-[a-f0-9]+$"
+  policy:
+    alphabetical:
+      order: desc
+  digestReflectionPolicy: Always
+  interval: 5m0s
