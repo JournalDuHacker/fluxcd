@@ -22,8 +22,13 @@ spec:
                 - name: config
                   mountPath: /secrets
                   readOnly: true
+                - name: cache
+                  mountPath: /.cache
           volumes:
             - name: config
               secret:
                 secretName: rss2social-config
+            - name: cache
+              persistentVolumeClaim:
+                claimName: rss2social-cache
           restartPolicy: OnFailure
