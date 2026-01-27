@@ -10,4 +10,4 @@ images:
   - name: ghcr.io/journalduhacker/rss2social:unset
     newName: ghcr.io/journalduhacker/rss2social
     newTag: main-174464b # {"$imagepolicy": "rss2social:rss2social-production:tag"}
-    digest: "" # {"$imagepolicy": "rss2social:rss2social-production:digest"}
+    digest: "sha256:80b944a0168d5b99e90515876b409688ecf891ddff98fd96033965b7088c0435" # {"$imagepolicy": "rss2social:rss2social-production:digest"}
