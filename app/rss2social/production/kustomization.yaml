@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: rss2social
+resources:
+  - namespace.yaml
+  - ../base/
+  - image-update-automation.yaml
+  - secrets/config.yaml
+images:
+  - name: ghcr.io/journalduhacker/rss2social:unset
+    newName: ghcr.io/journalduhacker/rss2social
+    newTag: main-0000000 # {"$imagepolicy": "rss2social:rss2social-production:tag"}
+    digest: "" # {"$imagepolicy": "rss2social:rss2social-production:digest"}
