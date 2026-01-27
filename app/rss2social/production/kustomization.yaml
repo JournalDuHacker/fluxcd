@@ -9,5 +9,5 @@ resources:
 images:
   - name: ghcr.io/journalduhacker/rss2social:unset
     newName: ghcr.io/journalduhacker/rss2social
-    newTag: main-0000000 # {"$imagepolicy": "rss2social:rss2social-production:tag"}
+    newTag: main-174464b # {"$imagepolicy": "rss2social:rss2social-production:tag"}
     digest: "" # {"$imagepolicy": "rss2social:rss2social-production:digest"}
