@@ -16,7 +16,6 @@ spec:
             - name: rss2social
               image: ghcr.io/journalduhacker/rss2social:unset
               imagePullPolicy: IfNotPresent
-              command: ["rss2social"]
               args: ["run", "--config", "/secrets/config.yaml"]
               volumeMounts:
                 - name: config
