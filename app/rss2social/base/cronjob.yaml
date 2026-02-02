@@ -4,7 +4,7 @@ kind: CronJob
 metadata:
   name: rss2social
 spec:
-  schedule: "12 8-22 * * *"
+  schedule: "*/10 7-23 * * *"
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 3
   failedJobsHistoryLimit: 3
