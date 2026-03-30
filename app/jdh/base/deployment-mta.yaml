@@ -1,12 +1,13 @@
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: mta
   labels:
     app: mta
 spec:
   replicas: 2
+  serviceName: mta-headless
   selector:
     matchLabels:
       app: mta
@@ -20,13 +21,6 @@ spec:
         runAsUser: 100
         runAsGroup: 101
         runAsNonRoot: true
-      affinity:
-        podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchLabels:
-                  app: mta
-              topologyKey: kubernetes.io/hostname
       containers:
         - name: mta
           image: devture/exim-relay
@@ -60,23 +54,32 @@ spec:
             limits:
               cpu: 500m
               memory: 256Mi
-      volumes:
-        - name: spool
-          persistentVolumeClaim:
-            claimName: mta-spool
+  volumeClaimTemplates:
+    - metadata:
+        name: spool
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
 ---
 apiVersion: v1
-kind: PersistentVolumeClaim
+kind: Service
 metadata:
-  name: mta-spool
+  name: mta-headless
   labels:
     app: mta
 spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
+  type: ClusterIP
+  clusterIP: None
+  ports:
+    - name: smtp
+      port: 8025
+      targetPort: smtp
+      protocol: TCP
+  selector:
+    app: mta
 ---
 apiVersion: v1
 kind: Service

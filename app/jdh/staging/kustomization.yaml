@@ -14,7 +14,7 @@ resources:
 patches:
   - patch: |-
       apiVersion: apps/v1
-      kind: Deployment
+      kind: StatefulSet
       metadata:
         name: mta
       spec:
