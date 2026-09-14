@@ -9,7 +9,7 @@ spec:
 
   storage:
     size: 10Gi
-    storageClassName: rbd-databases
+    storageClassName: rbd-databases-1az
 
   env:
     # Since data were imported from replication, we need to keep the same
@@ -30,12 +30,17 @@ spec:
       mountPath: /etc/mysql/mariadb.conf.d/project.cnf
       subPath: project.cnf
 
-  # Ensure that the Pods are not preempted by Kubernetes to make room for new scheduled Pods.
-  priorityClassName: system-node-critical
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - topologyKey: topology.kubernetes.io/zone
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/instance: mariadb-jdh
 
   resources:
     requests:
-      cpu: 1
+      cpu: 500m
       memory: 1Gi
     limits:
       memory: 2Gi
