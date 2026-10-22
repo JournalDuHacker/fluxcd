@@ -30,7 +30,7 @@ spec:
   imageRepositoryRef:
     name: blog
   filterTags:
-    pattern: "^main-[a-f0-9]+$"
+    pattern: '^v[0-9]+\.[0-9]+\.[0-9]+$'
   policy:
-    alphabetical:
-      order: desc
+    semver:
+      range: ">=1.1.0"
